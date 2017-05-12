@@ -1,7 +1,8 @@
-import { SVG_NS, KEYS } from '../settings';
+import { SVG_NS, KEYS, SCORE } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
+import Score from './Score';
 
 export default class Game {
 
@@ -12,6 +13,9 @@ export default class Game {
 		this.gameElement = document.getElementById(element);
 
 		this.board = new Board(this.width, this.height);
+		
+		this.player1Score = new Score(this.width/2 - 50, 30, 30);
+		this.player2Score = new Score(this.width/2 + 30, 30, 30);
 
 		this.paddleWidth = 8;
 		this.paddleHeight = 56;
@@ -50,6 +54,7 @@ export default class Game {
 			// this.boardHeight,
 			// this.direction
 		);
+
 	}
 
 	render() {
@@ -69,6 +74,8 @@ export default class Game {
 		this.player1.render(svg);
 		this.player2.render(svg);
 		this.ball.render(svg, this.player1, this.player2);
+		this.player1Score.render(svg, this.player1.score);
+		this.player2Score.render(svg, this.player2.score);
 	}
 
 }

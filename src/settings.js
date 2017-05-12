@@ -7,3 +7,9 @@ export const KEYS = {
   down: 'ArrowDown',     // player 2 down key
   spaceBar: ' ', // we'll use this later...
 };
+
+export const SCORE = {
+  distance: 50,
+  topDistance: 50,
+  size: 30
+}

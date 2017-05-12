@@ -9,6 +9,8 @@ export default class Ball {
 
     // Center ball in board initially
     this.reset();
+    this.ping = new Audio('public/sounds/pong-03.wav');
+    this.ping2 = new Audio('public/sounds/pong-04.wav');
   }
 
   reset() {
@@ -33,6 +35,7 @@ export default class Ball {
 
     if (hitLeft || hitRight) {
       this.vx = -this.vx;
+      this.ping2.play();
     } else if (hitTop || hitBottom) {
       this.vy = -this.vy;
     }
@@ -53,6 +56,7 @@ export default class Ball {
         && this.y <= bottomY // && The ball is <= the bottom edge of the paddle
       ) {
         this.vx = -this.vx;
+        this.ping.play();
       }
     } else {
       // Check for collision on player1
@@ -67,8 +71,14 @@ export default class Ball {
         && this.y <= bottomY
       ) {
         this.vx = -this.vx;
+        this.ping.play();
       }
     }
+  }
+
+  goal(player) {
+    player.score++;
+    this.reset();
   }
 
   render(svg, player1, player2) {
@@ -84,6 +94,20 @@ export default class Ball {
     circle.setAttributeNS(null, 'cy', this.y);
     circle.setAttributeNS(null, 'fill', '#fff');
     svg.appendChild(circle);
+
+    // Detect goal
+    const rightGoal = this.x + this.radius >= this.boardWidth;
+    const leftGoal = this.x - this.radius <= 0;
+
+    if ( rightGoal ) {
+      this.goal(player1);
+      this.direction = 1;
+
+    } else if ( leftGoal ) {
+      this.goal(player2);
+      this.direction = -1;
+
+    }
 
   }
 
