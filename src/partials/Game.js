@@ -35,6 +35,12 @@ export default class Game {
 			KEYS.down
 			);
 
+		document.addEventListener('keydown', event => {
+			if (event.key === KEYS.spaceBar) {
+				this.pause = !this.pause;
+			}
+		})
+
 		this.radius = 8;
 		this.ball = new Ball(
 			this.radius,
@@ -47,6 +53,11 @@ export default class Game {
 	}
 
 	render() {
+
+		if (this.pause === true) {
+			return;
+		}
+
 		this.gameElement.innerHTML = '';
 
 		let svg = document.createElementNS(SVG_NS, 'svg');
@@ -57,7 +68,7 @@ export default class Game {
 		this.board.render(svg);
 		this.player1.render(svg);
 		this.player2.render(svg);
-		this.ball.render(svg);
+		this.ball.render(svg, this.player1, this.player2);
 	}
 
 }
