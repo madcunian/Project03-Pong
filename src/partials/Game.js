@@ -79,6 +79,7 @@ export default class Game {
 
 		let player1Win = 'Player 1 won!';
     let player2Win = 'Player 2 won!';
+		
     if (this.player1.score === 10) {
       this.winner.render(svg, player1Win);
 			this.pause();

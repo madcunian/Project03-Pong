@@ -1,4 +1,4 @@
-import { SVG_NS, PADDLE } from '../settings';
+import { SVG_NS } from '../settings';
 
 export default class Ball {
   constructor(radius, boardWidth, boardHeight) {
@@ -77,7 +77,6 @@ export default class Ball {
       this.vx = 0;
       this.vy = 0;
     }
-    
   }
 
   render(svg, player1, player2) {
@@ -94,8 +93,8 @@ export default class Ball {
     circle.setAttributeNS(null, 'fill', '#ffb221');
     svg.appendChild(circle);
 
-    const rightGoal = this.x + this.radius >= this.boardWidth;
-    const leftGoal = this.x - this.radius <= 0;
+    let rightGoal = this.x + this.radius >= this.boardWidth;
+    let leftGoal = this.x - this.radius <= 0;
 
     if ( rightGoal ) {
       this.goal(player1);

@@ -21,7 +21,7 @@ export const SCORE = {
 }
 
 export const WINNER = {
-  distance: 80,
+  distance: 90,
   topDistance: 140,
   size: 40
 }
