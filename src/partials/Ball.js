@@ -1,4 +1,4 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, PADDLE } from '../settings';
 
 export default class Ball {
   constructor(radius, boardWidth, boardHeight) {
@@ -10,7 +10,8 @@ export default class Ball {
     // Center ball in board initially
     this.reset();
     this.ping = new Audio('public/sounds/pong-03.wav');
-    this.ping2 = new Audio('public/sounds/pong-04.wav');
+    this.ping2 = new Audio('public/sounds/pong-02.wav');
+    this.ping3 = new Audio('public/sounds/pong-04.wav');
   }
 
   reset() {
@@ -35,7 +36,7 @@ export default class Ball {
 
     if (hitLeft || hitRight) {
       this.vx = -this.vx;
-      this.ping2.play();
+      // this.ping3.play();
     } else if (hitTop || hitBottom) {
       this.vy = -this.vy;
     }
@@ -56,6 +57,7 @@ export default class Ball {
         && this.y <= bottomY // && The ball is <= the bottom edge of the paddle
       ) {
         this.vx = -this.vx;
+        PADDLE.height--;
         this.ping.play();
       }
     } else {
@@ -71,7 +73,8 @@ export default class Ball {
         && this.y <= bottomY
       ) {
         this.vx = -this.vx;
-        this.ping.play();
+        PADDLE.height--;
+        this.ping2.play();
       }
     }
   }
@@ -79,6 +82,11 @@ export default class Ball {
   goal(player) {
     player.score++;
     this.reset();
+    if (player.score === 10) {
+      this.vx = 0;
+      this.vy = 0;
+    }
+    
   }
 
   render(svg, player1, player2) {
@@ -92,7 +100,7 @@ export default class Ball {
     circle.setAttributeNS(null, 'r', this.radius);
     circle.setAttributeNS(null, 'cx', this.x);
     circle.setAttributeNS(null, 'cy', this.y);
-    circle.setAttributeNS(null, 'fill', '#fff');
+    circle.setAttributeNS(null, 'fill', '#ffb221');
     svg.appendChild(circle);
 
     // Detect goal

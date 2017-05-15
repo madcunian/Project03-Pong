@@ -12,7 +12,7 @@ export default class Board {
     rect.setAttributeNS(null, 'height', this.height);
     rect.setAttributeNS(null, 'x', '0');
     rect.setAttributeNS(null, 'y', '0');
-    rect.setAttributeNS(null, 'fill', '#353535');
+    rect.setAttributeNS(null, 'fill', '#37714f');
     svg.appendChild(rect);
 
     let line = document.createElementNS(SVG_NS, 'line');

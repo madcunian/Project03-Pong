@@ -6,10 +6,23 @@ export const KEYS = {
   up: 'ArrowUp',       // player 2 up key
   down: 'ArrowDown',     // player 2 down key
   spaceBar: ' ', // we'll use this later...
+  m: 'm',
 };
+
+export const PADDLE = {
+  width: 8,
+  height: 56,
+  padding: 10
+}
 
 export const SCORE = {
   distance: 50,
-  topDistance: 50,
+  topDistance: 40,
   size: 30
+}
+
+export const WINNER = {
+  distance: 80,
+  topDistance: 140,
+  size: 40
 }
