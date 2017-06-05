@@ -56,4 +56,3 @@ A basic pong game built on JavaScript using SVGs.
 
 * Eric Meyer Reset (http://meyerweb.com/eric/tools/css/reset/)
 * @font-face
-* Sass
